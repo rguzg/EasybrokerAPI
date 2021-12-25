@@ -21,5 +21,8 @@
   "homepage": "https://github.com/rguzg/EasybrokerAPI#readme",
   "devDependencies": {
     "ts-node": "^10.4.0"
+  },
+  "dependencies": {
+    "dotenv": "^10.0.0"
   }
 }
