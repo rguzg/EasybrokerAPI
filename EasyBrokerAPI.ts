@@ -22,7 +22,7 @@ interface EasyBrokerError{
 
 type EasyBrokerAPIResponse = PropertyList | EasyBrokerError;
 
-class EasyBrokerAPI{
+export default class EasyBrokerAPI{
     readonly #baseUrl: string = "https://api.stagingeb.com/v1/";
     #apiKey: string;
 
