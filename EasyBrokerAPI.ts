@@ -16,12 +16,6 @@ interface PropertyList {
     content: Property[]
 }
 
-interface EasyBrokerError{
-    error: string
-}
-
-type EasyBrokerAPIResponse = PropertyList | EasyBrokerError;
-
 export default class EasyBrokerAPI{
     readonly #baseUrl: string = "https://api.stagingeb.com/v1/";
     #apiKey: string;
@@ -34,23 +28,32 @@ export default class EasyBrokerAPI{
         }
     }
 
-    async getProperties(page: number = 1, limit: number = 20): Promise<EasyBrokerAPIResponse>{
+    getProperties(page: number = 1, limit: number = 20): Promise<PropertyList>{
         if(limit > 50){
             throw new Error("Limit cannot be greater than 50");
         }
 
         const url = `${this.#baseUrl}properties?page=${page}&limit=${limit}`;
 
-        const response = await fetch(url, {
-            headers: {
-                "X-Authorization": this.#apiKey,
-                "aacept": "application/json",
-                "content-type": "application/json"
+        return new Promise<PropertyList>(async (resolve, reject) => {
+            const response = await fetch(url, {
+                headers: {
+                    "X-Authorization": this.#apiKey,
+                    "aacept": "application/json",
+                    "content-type": "application/json"
+                }
+            });
+
+            
+            if(response.ok) {
+                const json = await response.json() as PropertyList;
+
+                resolve(json);
+            } else {
+                const json = await response.json();
+
+                reject(json);
             }
         });
-
-        const json = await response.json() as EasyBrokerAPIResponse;
-
-        return json;
     }
 }
