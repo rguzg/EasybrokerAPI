@@ -1,17 +1,17 @@
 import fetch from "node-fetch";
 
-interface Pagination{
+export interface Pagination{
     limit: number;
     page: number;
     total: number;
     next_page: number;
 }
 
-interface Property{
+export interface Property{
     title: string,
 }
 
-interface PropertyList {
+export interface PropertyList {
     pagination: Pagination,
     content: Property[]
 }
@@ -55,5 +55,27 @@ export default class EasyBrokerAPI{
                 reject(json);
             }
         });
+    }
+
+    
+    async getAllProperties(): Promise<Array<Property>>{
+        let hasAllProperties = false;
+        let properties: Array<Property> = [];
+        let currentPage = 1;
+        
+        while(!hasAllProperties){
+            let response = await this.getProperties(currentPage, 50);
+
+            properties = [...properties, ...response.content];
+
+            if(response.pagination.next_page === null){
+                hasAllProperties = true;
+            } else {
+                currentPage++;
+
+            }
+        }
+
+        return properties;
     }
 }
