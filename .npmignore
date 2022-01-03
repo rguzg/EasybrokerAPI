@@ -1,0 +1,4 @@
+node_modules
+.env
+preguntas.md
+__test__
