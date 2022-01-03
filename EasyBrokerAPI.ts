@@ -8,7 +8,12 @@ export interface Pagination{
 }
 
 export interface Property{
+    public_id: string,
     title: string,
+    title_image_full: string,
+    title_image_thumb: string,
+    property_type: string,
+    location: string,
 }
 
 export interface PropertyList {
