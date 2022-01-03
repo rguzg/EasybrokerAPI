@@ -36,6 +36,7 @@
     "dotenv": "^10.0.0",
     "node-fetch": "2.6"
   },
+  "types": "./dist/EasyBrokerAPI.d.ts",
   "jest": {
     "transform": {
       "^.+\\.[t|j]sx?$": "babel-jest"
