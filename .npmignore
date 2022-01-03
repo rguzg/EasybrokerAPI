@@ -1,6 +1,5 @@
 node_modules
 .env
 preguntas.md
-*.js
-*.d.ts
-!__test__/*.*
+__test__
+babel.config.json

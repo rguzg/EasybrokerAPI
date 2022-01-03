@@ -6,8 +6,10 @@
             "ES6",
             "DOM"
         ],
+        "outDir": "./dist",
         "target": "ES6",
         "strict": true,
-        "esModuleInterop": true
+        "esModuleInterop": true,
+        "declaration": true
     }
 }
