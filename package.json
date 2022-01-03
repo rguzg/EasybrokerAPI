@@ -5,7 +5,6 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node --loader ts-node/esm ./index.ts",
     "test": "tsc && jest",
     "build": "tsc"
   },
