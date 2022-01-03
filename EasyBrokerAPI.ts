@@ -28,7 +28,7 @@ export default class EasyBrokerAPI{
         }
     }
 
-    getProperties(page: number = 1, limit: number = 20): Promise<PropertyList>{
+    getPropertyList(page: number = 1, limit: number = 20): Promise<PropertyList>{
         if(limit > 50){
             throw new Error("Limit cannot be greater than 50");
         }
@@ -64,7 +64,7 @@ export default class EasyBrokerAPI{
         let currentPage = 1;
         
         while(!hasAllProperties){
-            let response = await this.getProperties(currentPage, 50);
+            let response = await this.getPropertyList(currentPage, 50);
 
             properties = [...properties, ...response.content];
 
