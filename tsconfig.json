@@ -8,6 +8,7 @@
         ],
         "target": "ES6",
         "strict": true,
-        "esModuleInterop": true
+        "esModuleInterop": true,
+        "declaration": true
     }
 }
