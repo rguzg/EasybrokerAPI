@@ -1,5 +1,6 @@
 import { describe, expect, test, beforeAll } from '@jest/globals';
 import EasyBrokerAPI from '../dist/EasyBrokerAPI';
+import { SerializeStatusOptions } from '../dist/OptionsSerializers';
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -85,5 +86,13 @@ describe('Property Tests', () => {
     expect(response.pagination.next_page).toBe(
       'https://api.stagingeb.com/v1/properties?limit=1&page=2'
     );
+  });
+});
+
+describe('Status Option Serializer Tests', () => {
+  test('Valid status options are serialized correctly', () => {
+    expect(
+      SerializeStatusOptions(new Set(['published', 'not_published']))
+    ).toBe('search[statuses][]=published&search[statuses][]=not_published');
   });
 });
