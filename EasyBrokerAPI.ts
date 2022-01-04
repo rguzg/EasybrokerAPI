@@ -48,7 +48,7 @@ export default class EasyBrokerAPI{
         let url = `${this.#baseUrl}properties?page=${page}&limit=${limit}`;
 
         if(options){
-            url += `&${this.#GetPropertyListSearchURL(options)}`;
+            url += `&${this.#getPropertyListSearchURL(options)}`;
         }
 
         return new Promise<PropertyList>(async (resolve, reject) => {
@@ -95,7 +95,7 @@ export default class EasyBrokerAPI{
         return properties;
     }
 
-    #GetPropertyListSearchURL(options: PropertyListSearchOptions): string{
+    #getPropertyListSearchURL(options: PropertyListSearchOptions): string{
         let searchURL = "";
 
         Object.keys(options).forEach((option, index, array) => {
