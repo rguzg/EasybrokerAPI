@@ -11,10 +11,16 @@ export interface Pagination{
 export interface Property{
     public_id: string,
     title: string,
-    title_image_full: string,
-    title_image_thumb: string,
+    title_image_full?: string,
+    title_image_thumb?: string,
+    images?: Image[],
     property_type: string,
     location: string,
+}
+
+export interface Image{
+    url: string,
+    title: string
 }
 
 export interface PropertyList {
@@ -65,6 +71,34 @@ export default class EasyBrokerAPI{
                 const json = await response.json() as PropertyList;
 
                 resolve(json);
+            } else {
+                const json = await response.json();
+
+                reject(json);
+            }
+        });
+    }
+
+    getPropertyByID(id: string): Promise<Property|null>{
+        let url = `${this.#baseUrl}properties/${id}`;
+
+        return new Promise<Property|null>(async (resolve, reject) => {
+            const response = await fetch(url, {
+                headers: {
+                    "X-Authorization": this.#apiKey,
+                    "aacept": "application/json",
+                    "content-type": "application/json"
+                }
+            });
+
+            
+            
+            if(response.ok) {
+                const json = await response.json();
+                
+                resolve(json);
+            } else if(response.status === 404){
+                resolve(null);
             } else {
                 const json = await response.json();
 

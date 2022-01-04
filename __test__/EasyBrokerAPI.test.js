@@ -89,6 +89,24 @@ describe('getPropertyList Tests', () => {
   });
 });
 
+describe('getPropertyByID Tests', () => {
+  let eb;
+
+  beforeAll(() => {
+    eb = new EasyBrokerAPI(process.env.APIKEY);
+  });
+
+  test('Valid ID returns correct property', async () => {
+    let property = await eb.getPropertyByID('EB-C0118');
+    expect(property.public_id).toBe('EB-C0118');
+  });
+
+  test('Invalid ID returns no results', async () => {
+    let property = await eb.getPropertyByID('EB-XXX123-INVALID');
+    expect(property).toBeNull();
+  });
+});
+
 describe('Status Option Serializer Tests', () => {
   test('Valid status options are serialized correctly', () => {
     expect(
