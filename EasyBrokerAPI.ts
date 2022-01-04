@@ -79,6 +79,34 @@ export default class EasyBrokerAPI{
         });
     }
 
+    getPropertyByID(id: string): Promise<Property|null>{
+        let url = `${this.#baseUrl}properties/${id}`;
+
+        return new Promise<Property|null>(async (resolve, reject) => {
+            const response = await fetch(url, {
+                headers: {
+                    "X-Authorization": this.#apiKey,
+                    "aacept": "application/json",
+                    "content-type": "application/json"
+                }
+            });
+
+            
+            
+            if(response.ok) {
+                const json = await response.json();
+                
+                resolve(json);
+            } else if(response.status === 404){
+                resolve(null);
+            } else {
+                const json = await response.json();
+
+                reject(json);
+            }
+        });
+    }
+
     
     async getAllProperties(): Promise<Array<Property>>{
         let hasAllProperties = false;
