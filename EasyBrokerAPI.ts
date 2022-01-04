@@ -13,8 +13,14 @@ export interface Property{
     title: string,
     title_image_full?: string,
     title_image_thumb?: string,
+    images?: Image[],
     property_type: string,
     location: string,
+}
+
+export interface Image{
+    url: string,
+    title: string
 }
 
 export interface PropertyList {
