@@ -28,7 +28,7 @@ describe('API Key Tests', () => {
   });
 });
 
-describe('Property Tests', () => {
+describe('getPropertyList Tests', () => {
   let eb;
 
   beforeAll(() => {
