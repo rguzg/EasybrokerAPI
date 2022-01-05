@@ -16,12 +16,16 @@ export interface Property{
     title_image_thumb?: string,
     images?: Image[],
     property_type: string,
-    location: string,
+    location: Location,
 }
 
 export interface Image{
     url: string,
     title: string
+}
+
+export interface Location{
+    name: string,
 }
 
 export interface PropertyList {
