@@ -1,5 +1,5 @@
 import fetch from "cross-fetch";
-import { SerializeStatusOptions } from "./OptionsSerializers";
+import { SerializeStatusOptions } from "./OptionsSerializers.js";
 
 export interface Pagination{
     limit: number;
