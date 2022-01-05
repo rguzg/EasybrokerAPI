@@ -34,6 +34,14 @@ export interface PropertyListSearchOptions{
 
 export type StatusOptions = "published" | "not_published" | "reserved" | "sold" | "rented" | "suspended";
 
+export interface ContactRequest{
+    name: string,
+    email: string,
+    phone: string,
+    property_id: string,
+    message: string,
+    source: string
+}
 export default class EasyBrokerAPI{
     readonly #baseUrl: string = "https://api.stagingeb.com/v1/";
     #apiKey: string;
@@ -99,6 +107,32 @@ export default class EasyBrokerAPI{
                 resolve(json);
             } else if(response.status === 404){
                 resolve(null);
+            } else {
+                const json = await response.json();
+
+                reject(json);
+            }
+        });
+    }
+
+    postContactRequest(contactRequest: ContactRequest): Promise<boolean>{
+        let url = `${this.#baseUrl}contact_requests`;
+
+        return new Promise<boolean>(async (resolve, reject) => {
+            const response = await fetch(url, {
+                headers: {
+                    "X-Authorization": this.#apiKey,
+                    "accept": "application/json",
+                    "content-type": "application/json"
+                },
+                method: "POST",
+                body: JSON.stringify(contactRequest)
+            });
+
+            
+            
+            if(response.ok) {                
+                resolve(true);
             } else {
                 const json = await response.json();
 
