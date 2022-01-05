@@ -12,6 +12,7 @@ export interface Property{
     public_id: string,
     title: string,
     title_image_full?: string,
+    description: string,
     title_image_thumb?: string,
     images?: Image[],
     property_type: string,
