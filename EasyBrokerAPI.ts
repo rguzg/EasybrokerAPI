@@ -61,7 +61,7 @@ export default class EasyBrokerAPI{
             const response = await fetch(url, {
                 headers: {
                     "X-Authorization": this.#apiKey,
-                    "aacept": "application/json",
+                    "accept": "application/json",
                     "content-type": "application/json"
                 }
             });
@@ -86,7 +86,7 @@ export default class EasyBrokerAPI{
             const response = await fetch(url, {
                 headers: {
                     "X-Authorization": this.#apiKey,
-                    "aacept": "application/json",
+                    "accept": "application/json",
                     "content-type": "application/json"
                 }
             });
